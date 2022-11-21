@@ -23,9 +23,11 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
+import { ICv } from "./CV";
 export interface IUser {
     username?: string;
     password?: string;
+    cv?: ICv;
 }
 declare let User: import("mongoose").Model<IUser, {}, {}, {}, any>;
 export { User };

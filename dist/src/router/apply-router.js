@@ -11,4 +11,6 @@ exports.applyRouter.get('', apply_controller_1.default.finAll);
 exports.applyRouter.post('', apply_controller_1.default.addApply);
 exports.applyRouter.put('/:id', apply_controller_1.default.editApply);
 exports.applyRouter.delete('/:id', apply_controller_1.default.deleteApply);
+exports.applyRouter.get('/find-cv/:id', apply_controller_1.default.findCvApplyInPost);
+exports.applyRouter.get('/find-post-apply/:id', apply_controller_1.default.findApplyInPost);
 //# sourceMappingURL=apply-router.js.map

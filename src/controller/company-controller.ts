@@ -11,7 +11,6 @@ class CompanyController{
         let company = req.body;
         company = await Company.create(company);
         return res.status(201).json(company);
-
     }
     editCompany = async (req:Request,res:Response)=>{
         let newCompany = req.body

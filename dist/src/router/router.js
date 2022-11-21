@@ -7,10 +7,12 @@ const company_router_1 = require("./company-router");
 const post_router_1 = require("./post-router");
 const major_router_1 = require("./major-router");
 const apply_router_1 = require("./apply-router");
+const cv_router_1 = require("./cv-router");
 exports.router = (0, express_1.Router)();
 exports.router.use('/auth', user_router_1.userRouter);
 exports.router.use('/companies', company_router_1.companyRouter);
 exports.router.use('/posts', post_router_1.postRouter);
 exports.router.use('/majors', major_router_1.majorRouter);
 exports.router.use('/applies', apply_router_1.applyRouter);
+exports.router.use('/cv', cv_router_1.cvRouter);
 //# sourceMappingURL=router.js.map

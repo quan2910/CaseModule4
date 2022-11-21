@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const apply_1 = require("../model/apply");
+const CV_1 = require("../model/CV");
 class ApplyController {
     constructor() {
         this.finAll = async (req, res) => {
@@ -28,6 +29,16 @@ class ApplyController {
             return res.status(200).json({
                 massage: "delete successfully"
             });
+        };
+        this.findApplyInPost = async (req, res) => {
+            let id = req.params.id;
+            let users = await apply_1.Apply.find({ user: id }).populate('post', 'contents').populate('user', 'username');
+            return res.status(200).json(users);
+        };
+        this.findCvApplyInPost = async (req, res) => {
+            let id = req.params.id;
+            let users = await CV_1.Cv.find({ post: id }).populate('user', 'username');
+            return res.status(200).json(users);
         };
     }
 }

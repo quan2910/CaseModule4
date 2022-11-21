@@ -2,16 +2,16 @@ import {Schema, model} from "mongoose";
 import {IUser} from "./user";
 import {IPost} from "./post";
 export interface IApply {
-   idUser : IUser;
-   idPost : IPost
+   user : IUser;
+   post : IPost
 }
 
 let ApplySchema = new Schema<IApply>({
-   idUser : {
+   user : {
        type : Schema.Types.ObjectId,
        ref : 'User'
    },
-    idPost : {
+    post : {
        type : Schema.Types.ObjectId,
         ref : 'Post'
     }

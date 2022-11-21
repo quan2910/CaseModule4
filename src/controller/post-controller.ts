@@ -1,6 +1,7 @@
 import {Request, Response} from "express";
 import {Post} from "../model/post";
-
+import {Apply} from "../model/apply";
+import {User} from "../model/user";
 class PostController{
     finAll = async (req:Request,res:Response)=>{
         let posts = await Post.find().populate('company','companyName').populate('major','majorName');
@@ -29,5 +30,7 @@ class PostController{
             massage: "delete successfully"
         })
     }
+
 }
-export default new PostController();
+export default
+new PostController();

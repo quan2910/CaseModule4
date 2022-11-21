@@ -2,6 +2,8 @@ import {Request, Response} from "express";
 import bcrypt from 'bcrypt';
 import {User} from "../model/user";
 import jwt from "jsonwebtoken"
+import {Apply} from "../model/apply";
+import {Post} from "../model/post";
 
 
 class UserController {
@@ -41,5 +43,6 @@ class UserController {
             }
         }
     }
+
 }
 export default new UserController();
