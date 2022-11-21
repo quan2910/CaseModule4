@@ -29,6 +29,16 @@ class PostController {
                 massage: "delete successfully"
             });
         };
+        this.findAllByMajor = async (req, res) => {
+            let id = req.params.id;
+            let posts = await post_1.Post.find({ major: id });
+            return res.status(200).json(posts);
+        };
+        this.findAllByName = async (req, res) => {
+            let name = req.body.namePost;
+            let findName = await post_1.Post.find({ namePost: { $regex: name } });
+            return res.status(200).json(findName);
+        };
     }
 }
 exports.default = new PostController();
