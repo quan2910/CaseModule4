@@ -1,5 +1,8 @@
 import {Request, Response} from "express";
 import {Company} from "../model/company";
+import {User} from "../model/user";
+import jwt from "jsonwebtoken"
+import bcrypt from 'bcrypt';
 
 
 class CompanyController{
@@ -30,6 +33,42 @@ class CompanyController{
         return res.status(200).json({
             massage: "delete successfully"
         })
+    }
+    register = async (req: Request, res: Response) => {
+        let company = req.body;
+        company.password = await bcrypt.hash(company.password, 10);
+        company = await Company.create(company);
+        return res.status(201).json(company);
+    }
+    login = async (req: Request, res: Response) => {
+        let company = req.body;
+        let companyFind = await Company.findOne({
+            companyName : company.companyName
+        });
+        if(!companyFind) {
+            return res.status(200).json({
+                massage : 'Company is not exist!!'
+            })
+        } else {
+            let comparePassword = await bcrypt.compare(company.password, companyFind.password)
+            if(!comparePassword){
+                return res.status(200).json({
+                    massage : 'Password is wrong'
+                })
+            } else {
+                let payload = {
+                    idCompany: companyFind._id,
+                    companyName: companyFind.companyName
+                }
+                let secret = 'aloblo'
+                let token = await jwt.sign(payload, secret, {
+                    expiresIn: 36000
+                });
+                return res.status(200).json({
+                    token: token
+                })
+            }
+        }
     }
 }
 export default new CompanyController();
