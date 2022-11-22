@@ -2,8 +2,6 @@ import {Request, Response} from "express";
 import bcrypt from 'bcrypt';
 import {User} from "../model/user";
 import jwt from "jsonwebtoken"
-import {Apply} from "../model/apply";
-import {Post} from "../model/post";
 
 
 class UserController {
@@ -27,6 +25,7 @@ class UserController {
             if(!comparePassword){
                 return res.status(200).json({
                     massage : 'Password is wrong'
+
                 })
             } else {
                 let payload = {
@@ -38,7 +37,8 @@ class UserController {
                     expiresIn: 36000
                 });
                 return res.status(200).json({
-                    token: token
+                    token: token,
+                    idUser: userFind._id
                 })
             }
         }

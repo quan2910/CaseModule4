@@ -9,3 +9,4 @@ applyRouter.put('/:id', applyController.editApply);
 applyRouter.delete('/:id', applyController.deleteApply);
 applyRouter.get('/find-cv/:id',applyController.findCvApplyInPost);
 applyRouter.get('/find-post-apply/:id',applyController.findApplyInPost);
+applyRouter.get('/show-post-of-company/:id',applyController.findPostOfCompany);

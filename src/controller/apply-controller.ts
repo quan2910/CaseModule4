@@ -1,8 +1,7 @@
 import {Request, Response} from "express";
 import {Apply} from "../model/apply";
 import {Post} from "../model/post";
-import {Cv} from "../model/CV";
-import {User} from "../model/user";
+
 
 class ApplyController{
     finAll = async (req:Request,res:Response)=>{
@@ -42,8 +41,14 @@ class ApplyController{
     findCvApplyInPost = async (req:Request,res:Response)=>{
         let id = req.params.id
         // let users = await Apply.find({user: id}).populate('post','contents').populate('user','username')
-        let users = await Cv.find({post: id}).populate('user','username');
+        let users = await Apply.find({post: id}).populate('user','cv');
         return res.status(200).json(users);
+    }
+
+    findPostOfCompany = async (req:Request,res:Response)=>{
+        let id = req.params.id
+        let post = await Apply.find({company: id}).populate('post','contents')
+        return res.status(200).json(post);
     }
 }
 export default new ApplyController();
