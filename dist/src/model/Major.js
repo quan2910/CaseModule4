@@ -7,4 +7,4 @@ let MajorSchema = new mongoose_1.Schema({
 });
 let Major = (0, mongoose_1.model)('Major', MajorSchema);
 exports.Major = Major;
-//# sourceMappingURL=Major.js.map
+//# sourceMappingURL=major.js.map

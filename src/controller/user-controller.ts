@@ -7,24 +7,39 @@ import jwt from "jsonwebtoken"
 class UserController {
     register = async (req: Request, res: Response) => {
         let user = req.body;
-        user.password = await bcrypt.hash(user.password, 10);
-        user = await User.create(user);
-        return res.status(201).json(user);
+        const userFind = await User.findOne({
+            username: user.username
+        })
+        if (userFind) {
+            res.status(200).json({
+                mess: "Tai khoan da ton tai",
+                checkRegister: false
+            })
+        } else {
+            user.password = await bcrypt.hash(user.password, 10)
+            await User.create(user)
+            res.status(200).json({
+                mess: "Thanh cong",
+                checkRegister: true
+            })
+        }
     }
+
+
     login = async (req: Request, res: Response) => {
         let user = req.body;
         let userFind = await User.findOne({
-            username : user.username
+            username: user.username
         });
-        if(!userFind) {
+        if (!userFind) {
             return res.status(200).json({
-                massage : 'User is not exist!!'
+                massage: 'User is not exist!!'
             })
         } else {
             let comparePassword = await bcrypt.compare(user.password, userFind.password)
-            if(!comparePassword){
-                return res.status(200).json({
-                    massage : 'Password is wrong'
+            if (!comparePassword) {
+                return res.json({
+                    massage: 'Password is wrong'
                 })
             } else {
                 let payload = {
@@ -35,11 +50,14 @@ class UserController {
                 let token = await jwt.sign(payload, secret, {
                     expiresIn: 36000
                 });
-                return res.status(200).json({
-                    token: token
+                return res.json({
+                    token: token,
+                    idUser: userFind._id
                 })
             }
         }
     }
+
 }
+
 export default new UserController();

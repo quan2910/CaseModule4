@@ -23,9 +23,13 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
+import { IMajor } from "./major";
+import { ICompany } from "./company";
 export interface IPost {
     namePost?: string;
     contents?: string;
+    major?: IMajor;
+    company?: ICompany;
 }
 declare let Post: import("mongoose").Model<IPost, {}, {}, {}, any>;
 export { Post };
