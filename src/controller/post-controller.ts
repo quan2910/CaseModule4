@@ -29,5 +29,15 @@ class PostController{
             massage: "delete successfully"
         })
     }
+    findPostOfCompany = async (req:Request,res:Response)=>{
+        let id = req.params.id
+        let post = await Post.find({company: id}).populate('major', 'majorName').populate('post')
+        return res.status(200).json(post);
+    }
+    findAllByMajor = async (req: Request, res: Response)=> {
+        let id = req.params.id
+        let posts = await Post.find({major: id}).populate('company','companyName').populate('major','majorName');
+        return res.status(200).json(posts)
+    }
 }
 export default new PostController();

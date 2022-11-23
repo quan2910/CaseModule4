@@ -26,6 +26,7 @@
 export interface IUser {
     username?: string;
     password?: string;
+    cv?: string;
 }
 declare let User: import("mongoose").Model<IUser, {}, {}, {}, any>;
 export { User };

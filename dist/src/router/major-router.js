@@ -8,7 +8,7 @@ const express_1 = require("express");
 const major_controller_1 = __importDefault(require("../controller/major-controller"));
 exports.majorRouter = (0, express_1.Router)();
 exports.majorRouter.get('', major_controller_1.default.finAll);
-exports.majorRouter.post('', major_controller_1.default.addMajor);
-exports.majorRouter.put('', major_controller_1.default.editMajor);
-exports.majorRouter.delete('', major_controller_1.default.deleteMajor);
+exports.majorRouter.post('', major_controller_1.default.add);
+exports.majorRouter.put('', major_controller_1.default.edit);
+exports.majorRouter.delete('', major_controller_1.default.delete);
 //# sourceMappingURL=major-router.js.map

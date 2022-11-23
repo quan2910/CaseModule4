@@ -3,11 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Apply = void 0;
 const mongoose_1 = require("mongoose");
 let ApplySchema = new mongoose_1.Schema({
-    idUser: {
+    user: {
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'User'
     },
-    idPost: {
+    post: {
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'Post'
     }

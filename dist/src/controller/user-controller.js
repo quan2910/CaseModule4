@@ -41,7 +41,8 @@ class UserController {
                         expiresIn: 36000
                     });
                     return res.status(200).json({
-                        token: token
+                        token: token,
+                        idUser: userFind._id
                     });
                 }
             }

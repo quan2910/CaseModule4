@@ -7,12 +7,12 @@ class MajorController {
             let majors = await major_1.Major.find();
             return res.status(200).json(majors);
         };
-        this.addMajor = async (req, res) => {
+        this.add = async (req, res) => {
             let major = req.body;
             major = await major_1.Major.create(major);
             return res.status(201).json(major);
         };
-        this.editMajor = async (req, res) => {
+        this.edit = async (req, res) => {
             let newMajor = req.body;
             let id = req.params.id;
             await major_1.Major.updateOne({ _id: id }, {
@@ -22,7 +22,7 @@ class MajorController {
                 message: " edit successfully "
             });
         };
-        this.deleteMajor = async (req, res) => {
+        this.delete = async (req, res) => {
             let id = req.params.id;
             await major_1.Major.deleteOne({ _id: id });
             return res.status(200).json({

@@ -29,6 +29,16 @@ class PostController {
                 massage: "delete successfully"
             });
         };
+        this.findPostOfCompany = async (req, res) => {
+            let id = req.params.id;
+            let post = await post_1.Post.find({ company: id }).populate('major', 'majorName').populate('post');
+            return res.status(200).json(post);
+        };
+        this.findAllByMajor = async (req, res) => {
+            let id = req.params.id;
+            let posts = await post_1.Post.find({ major: id }).populate('company', 'companyName').populate('major', 'majorName');
+            return res.status(200).json(posts);
+        };
     }
 }
 exports.default = new PostController();
