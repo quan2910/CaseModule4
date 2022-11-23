@@ -2,7 +2,7 @@ import {Request, Response} from "express";
 import {Company} from "../model/company";
 import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken"
-import {Post} from "../model/post";
+
 
 
 

@@ -40,14 +40,13 @@ class ApplyController{
     //chưa oke  Company xem CV của user
     findCvApplyInPost = async (req:Request,res:Response)=>{
         let id = req.params.id
-        // let users = await Apply.find({user: id}).populate('post','contents').populate('user','username')
-        let users = await Apply.find({post: id}).populate('user','cv');
+        let users = await Apply.find({post: id}).populate('post','contents').populate('user')
         return res.status(200).json(users);
     }
-
+    //show post của company đấy
     findPostOfCompany = async (req:Request,res:Response)=>{
         let id = req.params.id
-        let post = await Apply.find({company: id}).populate('post','contents')
+        let post = await Post.find({company: id}).populate('major', 'majorName')
         return res.status(200).json(post);
     }
 }

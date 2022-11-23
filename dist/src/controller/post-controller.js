@@ -13,12 +13,9 @@ class PostController {
             return res.status(201).json(post);
         };
         this.edit = async (req, res) => {
-            let newPost = req.body;
             let id = req.params.id;
-            await post_1.Post.updateOne({ _id: id }, {
-                $set: newPost
-            });
-            return res.status(200).json({
+            await post_1.Post.updateOne({ _id: id }, { $set: req.body });
+            return res.status(201).json({
                 message: " edit successfully "
             });
         };
