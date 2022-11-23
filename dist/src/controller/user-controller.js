@@ -10,9 +10,23 @@ class UserController {
     constructor() {
         this.register = async (req, res) => {
             let user = req.body;
-            user.password = await bcrypt_1.default.hash(user.password, 10);
-            user = await user_1.User.create(user);
-            return res.status(201).json(user);
+            const userFind = await user_1.User.findOne({
+                username: user.username
+            });
+            if (userFind) {
+                res.status(200).json({
+                    mess: "Tai khoan da ton tai",
+                    checkRegister: false
+                });
+            }
+            else {
+                user.password = await bcrypt_1.default.hash(user.password, 10);
+                await user_1.User.create(user);
+                res.status(200).json({
+                    mess: "Thanh cong",
+                    checkRegister: true
+                });
+            }
         };
         this.login = async (req, res) => {
             let user = req.body;
@@ -27,7 +41,7 @@ class UserController {
             else {
                 let comparePassword = await bcrypt_1.default.compare(user.password, userFind.password);
                 if (!comparePassword) {
-                    return res.status(200).json({
+                    return res.json({
                         massage: 'Password is wrong'
                     });
                 }
@@ -40,8 +54,9 @@ class UserController {
                     let token = await jsonwebtoken_1.default.sign(payload, secret, {
                         expiresIn: 36000
                     });
-                    return res.status(200).json({
-                        token: token
+                    return res.json({
+                        token: token,
+                        idUser: userFind._id
                     });
                 }
             }

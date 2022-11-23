@@ -36,9 +36,24 @@ class CompanyController {
         };
         this.register = async (req, res) => {
             let company = req.body;
-            company.password = await bcrypt_1.default.hash(company.password, 10);
-            company = await company_1.Company.create(company);
-            return res.status(201).json(company);
+            console.log(company);
+            const companyFind = await company_1.Company.findOne({
+                companyName: company.companyName
+            });
+            if (companyFind) {
+                res.status(200).json({
+                    mess: "Tai khoan da ton tai",
+                    checkRegister: false
+                });
+            }
+            else {
+                company.password = await bcrypt_1.default.hash(company.password, 10);
+                await company_1.Company.create(company);
+                return res.status(200).json({
+                    mess: "Thanh cong",
+                    checkRegister: true
+                });
+            }
         };
         this.login = async (req, res) => {
             let company = req.body;

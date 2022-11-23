@@ -35,8 +35,10 @@ class PostController {
             return res.status(200).json(posts);
         };
         this.findAllByName = async (req, res) => {
-            let name = req.body.namePost;
+            let name = req.query.namePost;
+            console.log(name);
             let findName = await post_1.Post.find({ namePost: { $regex: name } });
+            console.log(findName);
             return res.status(200).json(findName);
         };
     }
