@@ -4,6 +4,9 @@ declare class ApplyController {
     addApply: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
     editApply: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
     deleteApply: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
+    findApplyInPost: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
+    findCvApplyInPost: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
+    findPostOfCompany: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
 }
 declare const _default: ApplyController;
 export default _default;
