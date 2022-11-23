@@ -34,7 +34,7 @@ class ApplyController{
     //oke User xem đã apply vào những post nào
     findApplyInPost = async (req:Request,res:Response)=>{
         let id = req.params.id
-        let users = await Apply.find({user: id}).populate('post','contents').populate('user','username');
+        let users = await Apply.find({user: id}).populate('post').populate('user','username');
         return res.status(200).json(users);
     }
     //chưa oke  Company xem CV của user
