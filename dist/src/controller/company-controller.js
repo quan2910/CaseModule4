@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const company_1 = require("../model/company");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const user_1 = require("../model/user");
 class CompanyController {
     constructor() {
         this.finAll = async (req, res) => {
@@ -38,7 +37,7 @@ class CompanyController {
         this.registerCompany = async (req, res) => {
             let company = req.body;
             company.password = await bcrypt_1.default.hash(company.password, 10);
-            company = await user_1.User.create(company);
+            company = await company_1.Company.create(company);
             return res.status(201).json(company);
         };
         this.loginCompany = async (req, res) => {

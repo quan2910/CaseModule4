@@ -2,7 +2,6 @@ import {Request, Response} from "express";
 import {Company} from "../model/company";
 import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken";
-import {User} from "../model/user";
 
 
 class CompanyController{
@@ -37,9 +36,10 @@ class CompanyController{
     registerCompany = async (req: Request, res: Response) => {
         let company = req.body;
         company.password = await bcrypt.hash(company.password, 10);
-        company = await User.create(company);
+        company = await Company.create(company);
         return res.status(201).json(company);
     }
+
     loginCompany = async (req: Request, res: Response) => {
         let company = req.body;
         let companyFind = await Company.findOne({
@@ -72,7 +72,5 @@ class CompanyController{
             }
         }
     }
-
-
 }
 export default new CompanyController();
