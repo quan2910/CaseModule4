@@ -4,7 +4,7 @@ const post_1 = require("../model/post");
 class PostController {
     constructor() {
         this.finAll = async (req, res) => {
-            let posts = await post_1.Post.find().populate('company', 'companyName').populate('major', 'majorName');
+            let posts = await post_1.Post.find().populate('company', 'companyName').populate('major');
             return res.status(200).json(posts);
         };
         this.add = async (req, res) => {
@@ -31,13 +31,18 @@ class PostController {
         };
         this.findAllByMajor = async (req, res) => {
             let id = req.params.id;
-            let posts = await post_1.Post.find({ major: id });
+            let posts = await post_1.Post.find({ major: id }).populate('company').populate('major');
+            return res.status(200).json(posts);
+        };
+        this.findByIdPost = async (req, res) => {
+            let id = req.params.id;
+            let posts = await post_1.Post.findOne({ _id: id });
             return res.status(200).json(posts);
         };
         this.findAllByName = async (req, res) => {
             let name = req.query.namePost;
             console.log(name);
-            let findName = await post_1.Post.find({ namePost: { $regex: name } });
+            let findName = await post_1.Post.find({ namePost: { $regex: name } }).populate('major').populate('company');
             console.log(findName);
             return res.status(200).json(findName);
         };

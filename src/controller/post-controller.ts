@@ -1,10 +1,10 @@
 import {Request, Response} from "express";
 import {Post} from "../model/post";
-import {Major} from "../model/Major";
+import {Major} from "../model/major";
 
 class PostController{
     finAll = async (req:Request,res:Response)=>{
-        let posts = await Post.find().populate('company','companyName').populate('major','majorName');
+        let posts = await Post.find().populate('company','companyName').populate('major');
         return res.status(200).json(posts);
     }
     add = async (req: Request,res: Response)=> {
@@ -32,13 +32,18 @@ class PostController{
     }
     findAllByMajor = async (req: Request, res: Response)=> {
         let id = req.params.id
-        let posts = await Post.find({major: id})
+        let posts = await Post.find({major: id}).populate('company').populate('major')
+        return res.status(200).json(posts)
+    }
+    findByIdPost = async (req: Request, res: Response)=> {
+        let id = req.params.id
+        let posts = await Post.findOne({_id: id})
         return res.status(200).json(posts)
     }
     findAllByName = async (req: Request, res: Response) => {
         let name = req.query.namePost;
         console.log(name)
-        let findName = await Post.find({ namePost: { $regex: name } });
+        let findName = await Post.find({ namePost: { $regex: name } }).populate('major').populate('company');
         console.log(findName)
         return res.status(200).json(findName)
 

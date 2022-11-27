@@ -82,7 +82,8 @@ class CompanyController {
                         expiresIn: 36000
                     });
                     return res.status(200).json({
-                        token: token
+                        token: token,
+                        idCompany: companyFind._id
                     });
                 }
             }

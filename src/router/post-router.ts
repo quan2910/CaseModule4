@@ -9,3 +9,4 @@ postRouter.put('/:id',postController.edit);
 postRouter.delete('/:id',postController.delete);
 postRouter.get('/search-by-name',postController.findAllByName);
 postRouter.get('/:id',postController.findAllByMajor);
+postRouter.get('/find/:id',postController.findByIdPost);

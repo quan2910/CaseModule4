@@ -13,4 +13,5 @@ exports.postRouter.put('/:id', post_controller_1.default.edit);
 exports.postRouter.delete('/:id', post_controller_1.default.delete);
 exports.postRouter.get('/search-by-name', post_controller_1.default.findAllByName);
 exports.postRouter.get('/:id', post_controller_1.default.findAllByMajor);
+exports.postRouter.get('/find/:id', post_controller_1.default.findByIdPost);
 //# sourceMappingURL=post-router.js.map

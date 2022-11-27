@@ -32,7 +32,7 @@ class ApplyController {
         };
         this.findApplyInPost = async (req, res) => {
             let id = req.params.id;
-            let users = await apply_1.Apply.find({ user: id }).populate('post', 'contents').populate('user', 'username');
+            let users = await apply_1.Apply.find({ user: id }).populate('post').populate('user', 'username');
             return res.status(200).json(users);
         };
         this.findCvApplyInPost = async (req, res) => {

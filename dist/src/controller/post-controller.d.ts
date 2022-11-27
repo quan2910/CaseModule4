@@ -5,6 +5,7 @@ declare class PostController {
     edit: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
     delete: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
     findAllByMajor: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
+    findByIdPost: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
     findAllByName: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>>;
 }
 declare const _default: PostController;

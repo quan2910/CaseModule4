@@ -26,8 +26,8 @@
 import { IUser } from "./user";
 import { IPost } from "./post";
 export interface IApply {
-    idUser: IUser;
-    idPost: IPost;
+    user: IUser;
+    post: IPost;
 }
 declare let Apply: import("mongoose").Model<IApply, {}, {}, {}, any>;
 export { Apply };
